@@ -116,7 +116,6 @@ const Footer = () => {
           <address className="not-italic text-sm text-gray-300 space-y-1">
             <p>📍 Noida Extension, Uttar Pradesh</p>
             <p>📞 +91 9990989295</p>
-            <p>📧 info@niralaworld.org</p>
           </address>
         </div>
 
@@ -156,8 +155,7 @@ const Footer = () => {
       <div className="text-center text-xs text-gray-500 border-t border-gray-700 py-5">
         © {new Date().getFullYear()} Property Expert Realtor Pvt. Ltd. (RERA ID:
         UPRERAAGT23257). <br />
-        Authorized Channel Partner for Nirala Gateway (Project RERA ID:
-        UPRERAPRJ531916).
+        Authorized Channel Partner for fusion Rivulet (Project RERA No. UPRERAPRJ145736.).
       </div>
     </footer>
   );
