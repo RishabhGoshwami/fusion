@@ -14,6 +14,24 @@
       gtag('config', 'AW-17552428153');
     </script>
 
+    <!-- ✅ Google Ads Conversion Event Snippet -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-17552428153/GdV5CLy6oJkbEPmY07FB',
+            'value': 1.0,
+            'currency': 'INR',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
+
     <!-- ✅ SEO Title -->
     <title>Fusion The Rivulet — Sector 12, Greater Noida West | 3 & 4 BHK Luxury Apartments</title>
 
