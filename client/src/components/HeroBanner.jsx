@@ -43,6 +43,7 @@ const HeroBanner = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "d5f504e4-3e5a-4dda-8255-62123d25fe81",
+          project: "Fusion The Rivulet", // 👈 Project name add kiya
           ...formData,
         }),
       });
@@ -122,13 +123,17 @@ const HeroBanner = () => {
                 📍 SEC 12, Greater Noida West
               </p>
 
+              {/* Form Heading */}
               <h2 className="text-lg font-bold text-yellow-800 mb-3 uppercase tracking-wider">
-                Inquiry Form
+                Query Form – Fusion The Rivulet
               </h2>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3">
+              {/* Hidden Project Name */}
+              <input type="hidden" name="project" value="Fusion The Rivulet" />
+
               <input
                 type="text"
                 name="name"
@@ -155,15 +160,17 @@ const HeroBanner = () => {
                 placeholder="Mobile No."
                 className="w-full p-3 border-2 border-yellow-600 rounded-lg focus:ring-2 focus:ring-yellow-500 bg-white/70"
                 required
+                pattern="[6-9]{1}[0-9]{9}"
+                minLength={10}
+                maxLength={10}
               />
-
               <button
                 type="submit"
                 disabled={loading}
                 className="w-full px-6 py-3 text-lg font-semibold 
-                bg-gradient-to-r from-yellow-500 to-yellow-700 
-                hover:from-yellow-600 hover:to-yellow-800 
-                text-black rounded-xl shadow-lg transition disabled:opacity-50"
+      bg-gradient-to-r from-yellow-500 to-yellow-700 
+      hover:from-yellow-600 hover:to-yellow-800 
+      text-black rounded-xl shadow-lg transition disabled:opacity-50"
               >
                 {loading ? "Submitting..." : "Submit Inquiry"}
               </button>
@@ -175,7 +182,7 @@ const HeroBanner = () => {
                 href="tel:+917579487675"
                 className="inline-block text-lg font-bold text-yellow-700 hover:underline"
               >
-                📞 +91 7579487675
+                📞 +91 9990989295
               </a>
             </div>
           </div>

@@ -6,10 +6,25 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
   const [mobile, setMobile] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const projectName = "Fusion The Rivulet";
+
   if (!isOpen) return null;
+
+  const validateMobile = (number) => {
+    // Only 10-digit Indian mobile numbers starting with 6,7,8,9
+    const regex = /^[6-9][0-9]{9}$/;
+    return regex.test(number);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // validate mobile number
+    if (!validateMobile(mobile)) {
+      alert("Please enter a valid 10-digit mobile number (starting with 6-9).");
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();
@@ -17,6 +32,7 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
     formData.append("name", name);
     formData.append("email", email);
     formData.append("mobile", mobile);
+    formData.append("project", projectName); // ✅ Project name added
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -26,7 +42,11 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
 
       const result = await response.json();
       if (result.success) {
+        alert(`Thank you! Your details for project "${projectName}" have been submitted successfully.`);
         if (onSuccess) onSuccess();
+        setName("");
+        setEmail("");
+        setMobile("");
       } else {
         alert("Error: " + result.message);
       }
@@ -51,10 +71,11 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
 
         {/* Header */}
         <h2 className="text-2xl font-bold text-yellow-700 mb-2 text-center">
-          Fusion The Rivulet
+          {projectName}
         </h2>
         <p className="text-sm text-gray-600 mb-6 text-center">
-          Fill in your details below and our sales team will get in touch with you shortly.
+          Fill in your details below and our sales team will get in touch with
+          you shortly.
         </p>
 
         {/* Form */}
@@ -87,7 +108,8 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
           {/* Disclaimer */}
           <p className="text-xs text-gray-500">
             By submitting this form, you agree to receive communication from our
-            sales team. Your information will be kept confidential and used only for inquiry purposes.
+            sales team. Your information will be kept confidential and used only
+            for inquiry purposes.
           </p>
 
           {/* Submit Button */}
@@ -102,7 +124,10 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
 
         {/* RERA Info */}
         <p className="text-xs text-gray-700 mt-6 text-center font-medium">
-          Project RERA No: <span className="text-yellow-700 font-semibold">UPRERAPRJ145736</span>
+          Project RERA No:{" "}
+          <span className="text-yellow-700 font-semibold">
+            UPRERAPRJ145736
+          </span>
         </p>
       </div>
     </div>

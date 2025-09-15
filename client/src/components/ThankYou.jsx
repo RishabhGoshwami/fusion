@@ -4,12 +4,31 @@ import { Link } from "react-router-dom";
 const ThankYou = () => {
   useEffect(() => {
     if (typeof window.gtag === "function") {
+      // Fire normal conversion event
       window.gtag("event", "conversion", {
         send_to: "AW-17499013491/IbexCNjz-JEbEPOCl5hB",
         value: 1.0,
         currency: "INR",
       });
     }
+
+    // Define gtag_report_conversion function globally
+    window.gtag_report_conversion = function (url) {
+      const callback = function () {
+        if (typeof url !== "undefined") {
+          window.location = url;
+        }
+      };
+      if (typeof window.gtag === "function") {
+        window.gtag("event", "conversion", {
+          send_to: "AW-17552428153/GdV5CLy6oJkbEPmY07FB",
+          value: 1.0,
+          currency: "INR",
+          event_callback: callback,
+        });
+      }
+      return false;
+    };
   }, []);
 
   return (
@@ -21,6 +40,7 @@ const ThankYou = () => {
         </p>
         <Link
           to="/"
+          onClick={() => window.gtag_report_conversion("/")} // <-- gtag_report_conversion call
           className="bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition"
         >
           ⬅ Back to Home
