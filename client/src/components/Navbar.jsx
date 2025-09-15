@@ -10,7 +10,6 @@ const navLinks = [
   { name: "Amenities", id: "amenities", href: "/#amenities" },
   { name: "Pricing Plans", id: "Pricing-plan", href: "/#Pricing-Plan" },
   { name: "Layout & Floors", id: "floor-plan", href: "/#floor-plan" },
-  { name: "Brochure Download", id: "brochure", href: "/#brochure" },
 ];
 
 const Navbar = ({ openForm }) => {
@@ -41,9 +40,9 @@ const Navbar = ({ openForm }) => {
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <h1 className="sr-only">Nirala World</h1>
+          <h1 className="sr-only">Fusion The Rivulet</h1>
           <a href="/">
-            <img src={logo} alt="Nirala World Logo" className="h-12 w-auto" />
+            <img src={logo} alt="Fusion The Rivulet Logo" className="h-12 w-auto" />
           </a>
         </div>
 
