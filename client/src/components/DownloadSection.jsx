@@ -29,7 +29,7 @@ const DownloadSection = () => {
   };
 
   return (
-    <div className="relative py-20 bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white text-center overflow-hidden">
+    <div className="relative py-20 bg-gradient-to-b from-gray-950 via-gray-900 to-black text-black text-center overflow-hidden">
       {/* Background luxury glow */}
       <div className="absolute top-0 left-10 w-72 h-72 bg-yellow-500/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-0 right-10 w-72 h-72 bg-yellow-400/20 rounded-full blur-3xl animate-pulse"></div>
