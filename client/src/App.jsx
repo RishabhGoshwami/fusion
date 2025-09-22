@@ -13,25 +13,33 @@ import Disclaimer from "./components/Disclaimer";
 import DownloadSection from "./components/DownloadSection";
 import LocationSection from "./components/LocationSection";
 import FloorPlanSection from "./components/FloorPlanSection";
+import AutoPopupForm from "./components/AutoPopupForm"; // ✅ import autopopup
+
 const HomePage = () => (
   <>
     <Navbar />
     <HeroBanner />
     <div id="Pricing-plan">
-       <DownloadSection />
+      <DownloadSection />
     </div>
-   
+
     <AboutSection />
     <div id="amenities">
-       <AmenitiesSection />
+      <AmenitiesSection />
     </div>
-    <HighlightSection/>
-   <div id="floor-plan">
-    <FloorPlanSection/>
-   </div>
+    <HighlightSection />
+    <div id="floor-plan">
+      <FloorPlanSection />
+    </div>
     <GallerySection />
-    <LocationSection/>
-    <FloatingButtons /> 
+    <LocationSection />
+
+    {/* Floating CTA Buttons */}
+    <FloatingButtons />
+
+    {/* Auto Popup Form */}
+    <AutoPopupForm /> {/* ✅ This will open automatically on every page load */}
+
     <Footer />
   </>
 );
