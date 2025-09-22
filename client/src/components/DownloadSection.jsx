@@ -38,9 +38,9 @@ const DownloadSection = () => {
         <h3 className="text-yellow-400 text-sm font-semibold uppercase tracking-[0.25em]">
           Downloads
         </h3>
-        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-          Get the <span className="text-yellow-400">Details</span>
-        </h2>
+       <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-white">
+    Get the <span className="text-yellow-400">Details</span>
+</h2>
         <p className="text-gray-300 mb-10 text-lg">
           Access the brochure and price list instantly after filling out the form.
         </p>

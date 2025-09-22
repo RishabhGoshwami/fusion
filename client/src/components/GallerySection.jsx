@@ -53,7 +53,7 @@ const GallerySection = () => {
           Project <span className="text-green-600">Gallery</span>
         </h2>
         <p className="text-gray-600 mt-3 text-lg">
-          Explore highlights of <strong>Nirala Gateway</strong> through our visual gallery.
+          Explore highlights of <strong>Fusion The Rivulet</strong> through our visual gallery.
         </p>
       </div>
 
