@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"; 
+import brochure from "../assets/Nirala Gateway_99acres.pdf"; // 👈 Brochure import
 
 const AutoPopupForm = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,6 +8,8 @@ const AutoPopupForm = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
   const [messageVisible, setMessageVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   // Show the popup after a 1-second delay
   useEffect(() => {
@@ -30,7 +34,10 @@ const AutoPopupForm = () => {
 
     const mobilePattern = /^[6-9]\d{9}$/;
     if (!mobilePattern.test(formData.mobile)) {
-      showMessage("Please enter a valid 10-digit mobile number starting with 6-9.", "error");
+      showMessage(
+        "Please enter a valid 10-digit mobile number starting with 6-9.",
+        "error"
+      );
       return;
     }
 
@@ -40,6 +47,7 @@ const AutoPopupForm = () => {
       access_key: "d5f504e4-3e5a-4dda-8255-62123d25fe81",
       name: formData.name,
       mobile: formData.mobile,
+      project: "Fusion", 
     };
 
     try {
@@ -51,11 +59,18 @@ const AutoPopupForm = () => {
 
       const result = await response.json();
       if (result.success) {
-        showMessage(`Thank you ${formData.name}! Your brochure will download shortly.`, "success");
-        // NOTE: The original code attempted to download a local PDF file.
-        // For this self-contained example, we will just show the success message.
-        // In a real application, you would handle the brochure download here.
-        setIsOpen(false);
+        // 👇 Auto Download PDF
+        const link = document.createElement("a");
+        link.href = brochure;
+        link.download = "Fusion-Brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        // 👇 Navigate to ThankYou page after short delay
+        setTimeout(() => {
+          navigate("/thank-you");
+        }, 1000); // 1 sec delay so download starts first
       } else {
         showMessage("Something went wrong. Please try again.", "error");
       }
@@ -90,18 +105,16 @@ const AutoPopupForm = () => {
       {/* Popup Form Container */}
       <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
         <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full animate-fade-in-up relative overflow-hidden transition-all duration-300">
-          
           {/* Close Button */}
           <button
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors"
             onClick={() => setIsOpen(false)}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            ✕
           </button>
 
           {/* Header */}
           <div className="text-center mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="mx-auto mb-2 text-yellow-500"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="8" x2="16" y1="13" y2="13"/><line x1="8" x2="16" y1="17" y2="17"/><line x1="10" x2="14" y1="9" y2="9"/></svg>
             <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">
               Download Brochure
             </h2>
@@ -131,6 +144,8 @@ const AutoPopupForm = () => {
               title="Enter a valid 10-digit mobile number starting with 6-9"
               className="w-full border border-gray-200 rounded-xl p-3 bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-300"
             />
+            <input type="hidden" name="project" value="Fusion" />
+
             <button
               type="submit"
               disabled={loading}
@@ -138,7 +153,26 @@ const AutoPopupForm = () => {
             >
               {loading ? (
                 <>
-                  <svg className="animate-spin h-5 w-5 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.96l2-2.67z"></path></svg>
+                  <svg
+                    className="animate-spin h-5 w-5 text-gray-900"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.96l2-2.67z"
+                    ></path>
+                  </svg>
                   <span>Submitting...</span>
                 </>
               ) : (
