@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import brochure from "../assets/Nirala Gateway_99acres.pdf"; // 👈 Brochure import
+import brochure from "../assets/Nirala Gateway_99acres.pdf"; // Brochure import
 
 const AutoPopupForm = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", mobile: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", mobile: "" });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
   const [messageVisible, setMessageVisible] = useState(false);
 
   const navigate = useNavigate();
 
-  // Show the popup after a 1-second delay
   useEffect(() => {
     const timer = setTimeout(() => setIsOpen(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Show a custom message box instead of an alert
   const showMessage = (text, type) => {
     setMessage({ text, type });
     setMessageVisible(true);
@@ -41,13 +38,19 @@ const AutoPopupForm = () => {
       return;
     }
 
+    if (!formData.email.includes("@")) {
+      showMessage("Please enter a valid email address.", "error");
+      return;
+    }
+
     setLoading(true);
 
     const data = {
       access_key: "d5f504e4-3e5a-4dda-8255-62123d25fe81",
       name: formData.name,
+      email: formData.email,
       mobile: formData.mobile,
-      project: "Fusion", 
+      project: "Fusion",
     };
 
     try {
@@ -59,7 +62,6 @@ const AutoPopupForm = () => {
 
       const result = await response.json();
       if (result.success) {
-        // 👇 Auto Download PDF
         const link = document.createElement("a");
         link.href = brochure;
         link.download = "Fusion-Brochure.pdf";
@@ -67,10 +69,9 @@ const AutoPopupForm = () => {
         link.click();
         document.body.removeChild(link);
 
-        // 👇 Navigate to ThankYou page after short delay
         setTimeout(() => {
           navigate("/thank-you");
-        }, 1000); // 1 sec delay so download starts first
+        }, 1000);
       } else {
         showMessage("Something went wrong. Please try again.", "error");
       }
@@ -96,16 +97,13 @@ const AutoPopupForm = () => {
         }
       `}</style>
 
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-gray/49 bg-opacity-70 backdrop-blur-sm z-40"
         onClick={() => setIsOpen(false)}
       ></div>
 
-      {/* Popup Form Container */}
       <div className="fixed inset-0 flex items-center justify-center z-50 px-4">
         <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-sm w-full animate-fade-in-up relative overflow-hidden transition-all duration-300">
-          {/* Close Button */}
           <button
             className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors"
             onClick={() => setIsOpen(false)}
@@ -113,7 +111,6 @@ const AutoPopupForm = () => {
             ✕
           </button>
 
-          {/* Header */}
           <div className="text-center mb-6">
             <h2 className="text-3xl font-extrabold text-gray-800 tracking-tight">
               Download Brochure
@@ -123,7 +120,6 @@ const AutoPopupForm = () => {
             </p>
           </div>
 
-          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-5">
             <input
               type="text"
@@ -131,6 +127,15 @@ const AutoPopupForm = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
+              required
+              className="w-full border border-gray-200 rounded-xl p-3 bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-300"
+            />
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email Address"
               required
               className="w-full border border-gray-200 rounded-xl p-3 bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition duration-300"
             />
@@ -181,7 +186,6 @@ const AutoPopupForm = () => {
             </button>
           </form>
 
-          {/* Custom Message Box */}
           <div
             className={`absolute bottom-4 left-1/2 -translate-x-1/2 w-11/12 rounded-xl p-4 shadow-xl text-center text-sm font-semibold transition-all duration-300 transform ${
               messageVisible

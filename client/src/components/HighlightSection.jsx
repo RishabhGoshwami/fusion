@@ -30,22 +30,22 @@ const highlightCards = [
 
 const HighlightSection = () => {
   return (
-    <section className="relative overflow-hidden py-20 bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+    <section className="relative overflow-hidden py-20 bg-white text-gray-900">
       {/* Ambient glows */}
-      <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-500/10 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl" />
+      <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-200/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-300/20 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         {/* Section Heading */}
         <div className="mb-10 text-center">
-          <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-yellow-400">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-yellow-500">
             Highlights
           </h3>
           <h2 className="mt-3 text-4xl font-extrabold md:text-5xl">
-            Designed for <span className="text-yellow-400">Better Living</span>
+            Designed for <span className="text-yellow-500">Better Living</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-gray-300">
-            Thoughtfully curated features that blend comfort, connectivity and confidence.
+          <p className="mx-auto mt-4 max-w-2xl text-gray-700">
+            Thoughtfully curated features that blend comfort, connectivity, and confidence.
           </p>
         </div>
 
@@ -54,12 +54,12 @@ const HighlightSection = () => {
           {topFeatures.map(({ icon: Icon, title }, i) => (
             <div
               key={i}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-md transition hover:-translate-y-1 hover:bg-white/10"
+              className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 p-5 transition hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="mb-3 inline-flex items-center justify-center rounded-xl bg-yellow-500/15 p-3 ring-1 ring-inset ring-yellow-400/30">
-                <Icon className="h-6 w-6 text-yellow-400" />
+              <div className="mb-3 inline-flex items-center justify-center rounded-xl bg-yellow-100 p-3 ring-1 ring-inset ring-yellow-300">
+                <Icon className="h-6 w-6 text-yellow-500" />
               </div>
-              <p className="font-medium text-gray-100">{title}</p>
+              <p className="font-medium text-gray-900">{title}</p>
 
               {/* subtle gradient underline on hover */}
               <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-yellow-400 to-amber-500 transition-all duration-300 group-hover:w-full" />
@@ -72,16 +72,16 @@ const HighlightSection = () => {
           {highlightCards.map(({ icon: Icon, title, desc }, i) => (
             <div
               key={i}
-              className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-gray-900/60 to-gray-900/40 p-6 shadow-[0_10px_30px_-15px_rgba(0,0,0,0.6)] transition hover:-translate-y-1 hover:shadow-[0_18px_50px_-15px_rgba(250,204,21,0.35)]"
+              className="relative rounded-2xl border border-gray-200 bg-gray-50 p-6 shadow-md transition hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="mb-4 inline-flex items-center justify-center rounded-2xl bg-yellow-500/15 p-3 ring-1 ring-inset ring-yellow-400/30">
-                <Icon className="h-6 w-6 text-yellow-400" />
+              <div className="mb-4 inline-flex items-center justify-center rounded-2xl bg-yellow-100 p-3 ring-1 ring-inset ring-yellow-300">
+                <Icon className="h-6 w-6 text-yellow-500" />
               </div>
-              <h4 className="text-lg font-semibold text-white">{title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-gray-300">{desc}</p>
+              <h4 className="text-lg font-semibold text-gray-900">{title}</h4>
+              <p className="mt-2 text-sm leading-relaxed text-gray-700">{desc}</p>
 
               {/* corner accent */}
-              <div className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 rounded-full bg-amber-400/10 blur-xl" />
+              <div className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 rounded-full bg-amber-200/30 blur-xl" />
             </div>
           ))}
         </div>

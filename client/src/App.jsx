@@ -19,9 +19,7 @@ const HomePage = () => (
   <>
     <Navbar />
     <HeroBanner />
-    <div id="Pricing-plan">
-      <DownloadSection />
-    </div>
+   
 
     <AboutSection />
     <div id="amenities">
@@ -31,11 +29,15 @@ const HomePage = () => (
     <div id="floor-plan">
       <FloorPlanSection />
     </div>
+     <div id="Pricing-plan">
+      <DownloadSection />
+    </div>
     <GallerySection />
     <LocationSection />
 
     {/* Floating CTA Buttons */}
     <FloatingButtons />
+    
 
     {/* Auto Popup Form */}
     <AutoPopupForm /> {/* ✅ This will open automatically on every page load */}

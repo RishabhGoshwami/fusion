@@ -5,16 +5,16 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative py-20 px-6 md:px-12 scroll-mt-20 bg-gradient-to-r from-black via-zinc-900 to-black"
+      className="relative py-20 px-6 md:px-12 scroll-mt-20 bg-white text-gray-900"
     >
-      {/* Subtle golden glow overlays */}
-      <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-500/10 blur-3xl"></div>
-      <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-400/10 blur-3xl"></div>
+      {/* Subtle accent overlays */}
+      <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-200/20 blur-3xl"></div>
+      <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-200/20 blur-3xl"></div>
 
-      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center text-white">
+      <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         {/* Left Side - Text */}
         <div className="space-y-6">
-          <h3 className="text-amber-400 text-sm font-semibold uppercase tracking-[0.3em]">
+          <h3 className="text-amber-500 text-sm font-semibold uppercase tracking-[0.3em]">
             About Fusion Rivulet
           </h3>
           <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -23,21 +23,20 @@ const AboutSection = () => {
               Fusion The Rivulet
             </span>
           </h2>
-          <p className="text-lg font-medium text-gray-200">
+          <p className="text-lg font-medium text-gray-700">
             Discover a life crafted for{" "}
-            <span className="text-amber-300 font-semibold">comfort</span>,{" "}
-            <span className="text-amber-300 font-semibold">elegance</span>, and{" "}
-            <span className="text-amber-300 font-semibold">exclusivity</span>.
+            <span className="text-amber-400 font-semibold">comfort</span>,{" "}
+            <span className="text-amber-400 font-semibold">elegance</span>, and{" "}
+            <span className="text-amber-400 font-semibold">exclusivity</span>.
           </p>
 
-          <p className="text-gray-300 leading-relaxed">
-            <strong className="text-white">Fusion The Rivulet</strong> offers
-            you premium residences with{" "}
+          <p className="text-gray-600 leading-relaxed">
+            <strong className="text-gray-900">Fusion The Rivulet</strong> offers
+            premium residences with{" "}
             <span className="text-amber-400">world-class features</span>,{" "}
             <span className="text-amber-400">low-density living</span>, and{" "}
             <span className="text-amber-400">exceptional design</span> — all in
-            the heart of{" "}
-            <span className="text-amber-400">Noida Extension</span>.
+            the heart of <span className="text-amber-400">Noida Extension</span>.
           </p>
 
           {/* Decorative golden line */}
@@ -49,7 +48,7 @@ const AboutSection = () => {
           <img
             src={inner01}
             alt="Fusion Rivulet Preview"
-            className="rounded-2xl shadow-[0_10px_30px_rgba(255,215,0,0.2)] max-w-full h-auto transform hover:scale-105 transition duration-500 ease-in-out"
+            className="rounded-2xl shadow-[0_10px_30px_rgba(255,215,0,0.15)] max-w-full h-auto transform hover:scale-105 transition duration-500 ease-in-out"
             loading="lazy"
           />
         </div>
