@@ -6,7 +6,7 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
   const [mobile, setMobile] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const projectName = "Fusion The Rivulet";
+  const projectName = "Fusion The Brook & Rivulet";
 
   if (!isOpen) return null;
 

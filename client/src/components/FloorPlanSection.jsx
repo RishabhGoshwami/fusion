@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import floor2 from "../assets/floo2.webp";
 import floor3 from "../assets/floor3.jpg";
 import sitePlan from "../assets/gal6.jpg";
+import PopupForm from "./PopupForm"; // ✅ import popup form
 
 const FloorPlanSection = () => {
   const [activePlan, setActivePlan] = useState("4bhk");
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // ✅ popup state
 
   const plans = [
     { id: "4bhk", label: "3 BHK + 3T + 4B", img: floor2 },
@@ -43,14 +45,28 @@ const FloorPlanSection = () => {
         </div>
 
         {/* Image Display */}
-        <div className="relative mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-xl">
+        <div
+          className="relative mx-auto max-w-4xl rounded-2xl overflow-hidden shadow-xl cursor-pointer"
+          onClick={() => setIsPopupOpen(true)} // ✅ image click opens popup
+        >
           <img
             src={currentPlan.img}
             alt={currentPlan.label}
-            className="w-full h-auto object-cover transition duration-500"
+            className="w-full h-auto object-cover transition duration-500 filter blur-[8px]" // ✅ blur image
           />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="bg-yellow-600 text-white px-4 py-2 rounded-lg shadow-lg">
+              Click to View Details
+            </span>
+          </div>
         </div>
       </div>
+
+      {/* ✅ PopupForm Component */}
+      <PopupForm 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </section>
   );
 };

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import property6 from "../assets/background_01.jpg";
 import property7 from "../assets/slider_background_01.jpg";
-import logoDark from "../assets/logo_dark.webp";
+import logoDark from "/logo_dark.webp";
 
 const HeroBanner = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +43,7 @@ const HeroBanner = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: "d5f504e4-3e5a-4dda-8255-62123d25fe81",
-          project: "Fusion The Rivulet", // 👈 Project name add kiya
+          project: "Fusion The Brook and Revulet", // 👈 updated name
           ...formData,
         }),
       });
@@ -103,7 +103,7 @@ const HeroBanner = () => {
             <div className="flex justify-center mb-2">
               <img
                 src={logoDark}
-                alt="Fusion The Rivulet Logo"
+                alt="Fusion The Brook and Revulet Logo"
                 className="h-12 md:h-16 object-contain"
               />
             </div>
@@ -125,14 +125,18 @@ const HeroBanner = () => {
 
               {/* Form Heading */}
               <h2 className="text-lg font-bold text-yellow-800 mb-3 uppercase tracking-wider">
-                Query Form – Fusion The Rivulet
+                Query Form – Fusion The Brook and Revulet
               </h2>
             </div>
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3">
               {/* Hidden Project Name */}
-              <input type="hidden" name="project" value="Fusion The Rivulet" />
+              <input
+                type="hidden"
+                name="project"
+                value="Fusion The Brook and Revulet"
+              />
 
               <input
                 type="text"

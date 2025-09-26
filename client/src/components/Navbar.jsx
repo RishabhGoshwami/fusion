@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { FaPhone } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../assets/logo_dark.webp"; // ✅ import logo from assets
+import logo from "/logo_dark.webp"; // ✅ import logo from assets
 
 const navLinks = [
   { name: "Home", id: "home", href: "/" },
