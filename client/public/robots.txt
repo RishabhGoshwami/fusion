@@ -1,0 +1,8 @@
+# robots.txt for Fusion Group
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.fusiongroup.org.in/sitemap.xml
