@@ -44,7 +44,9 @@ const HomePage = () => {
         <DownloadSection />
       </div>
       <GallerySection />
-      <LocationSection />
+      <div id="location">
+        <LocationSection />
+      </div>
 
       {/* Floating CTA Buttons */}
       <FloatingButtons />
@@ -55,7 +57,9 @@ const HomePage = () => {
         onClose={() => setIsPopupOpen(false)}
       />
 
-      <Footer />
+      <div id="contactus">
+        <Footer />
+      </div>
     </>
   );
 };
