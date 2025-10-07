@@ -10,48 +10,68 @@ const PopupForm = ({ isOpen, onClose, onSuccess }) => {
 
   if (!isOpen) return null;
 
-  const validateMobile = (number) => {
-    // Only 10-digit Indian mobile numbers starting with 6,7,8,9
-    const regex = /^[6-9][0-9]{9}$/;
-    return regex.test(number);
-  };
+  const validateMobile = (number) => /^[6-9][0-9]{9}$/.test(number);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // validate mobile number
     if (!validateMobile(mobile)) {
-      alert("Please enter a valid 10-digit mobile number (starting with 6-9).");
+      alert("Please enter a valid 10-digit mobile number (starting with 6–9).");
       return;
     }
 
     setLoading(true);
 
-    const formData = new FormData();
-    formData.append("access_key", "d5f504e4-3e5a-4dda-8255-62123d25fe81");
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("mobile", mobile);
-    formData.append("project", projectName); // ✅ Project name added
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      // 1️⃣ Send data to Web3Forms (email notification)
+      const web3Response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "d5f504e4-3e5a-4dda-8255-62123d25fe81",
+          name,
+          email,
+          mobile,
+          project: projectName,
+        }),
       });
 
-      const result = await response.json();
-      if (result.success) {
-        alert(`Thank you! Your details for project "${projectName}" have been submitted successfully.`);
-        if (onSuccess) onSuccess();
+      const web3Result = await web3Response.json();
+
+      // 2️⃣ Send data to CRM (lead capture)
+      const crmUrl = `https://app.propertyexpertrealtors.com/api/getRecords.php?authentication_key=VndsbUlpKzhKdWpEbEZNSUNva2t1UT09&leads_full_name=${encodeURIComponent(
+        name
+      )}&leads_phone_number=${encodeURIComponent(
+        mobile
+      )}&leads_email_id=${encodeURIComponent(
+        email
+      )}&leads_type=LEAD&leads_projects_name=${encodeURIComponent(
+        projectName
+      )}&leads_source=Website&leads_entry_type=PopupForm`;
+
+      const crmResponse = await fetch(crmUrl);
+      const crmText = await crmResponse.text();
+
+      // 3️⃣ Combine result handling
+      if (web3Result.success && crmResponse.ok) {
+        alert(
+          `✅ Thank you ${name}! Your details for "${projectName}" have been submitted successfully.`
+        );
+
+        // Reset state
         setName("");
         setEmail("");
         setMobile("");
+
+        if (onSuccess) onSuccess();
+        onClose();
       } else {
-        alert("Error: " + result.message);
+        alert("❌ Submission failed. Please try again.");
+        console.warn("CRM Response:", crmText);
       }
     } catch (err) {
-      alert("Something went wrong!");
+      console.error("Error:", err);
+      alert("Something went wrong. Please try again later.");
     }
 
     setLoading(false);
