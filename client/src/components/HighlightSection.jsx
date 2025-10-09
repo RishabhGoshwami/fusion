@@ -1,51 +1,56 @@
+// ✅ src/components/HighlightSection.jsx (Final Polished & SEO-Optimized)
 import React from "react";
 import { Hammer, Gem, Trees, Sparkles, MapPin, ShieldCheck } from "lucide-react";
 
+// Top Feature Highlights
 const topFeatures = [
-  { icon: Hammer, title: "Advanced Construction Technology" },
-  { icon: Gem, title: "Premium Living" },
+  { icon: Hammer, title: "Mivan Formwork Construction" },
+  { icon: Gem, title: "Premium 3 & 4 BHK Apartments" },
   { icon: Trees, title: "12.5 Acres of Green and Open Spaces" },
 ];
 
+// Project Highlights with Keyword Optimization
 const highlightCards = [
   {
     icon: Sparkles,
     title: "Luxury Amenities for an Elevated Lifestyle",
     desc:
-      "Clubhouse, fitness, leisure & community spaces designed to elevate everyday living.",
+      "Clubhouse, fitness zones, leisure areas, and community spaces designed to elevate everyday living at Fusion Rivulet.",
   },
   {
     icon: MapPin,
-    title: "Prime Location with Excellent Connectivity",
+    title: "Prime Location in Greater Noida West",
     desc:
-      "Seamless access to major roads, business hubs, schools & healthcare.",
+      "Enjoy seamless connectivity to major roads, business hubs, schools, and healthcare from Fusion Rivulet.",
   },
   {
     icon: ShieldCheck,
-    title: "Trusted Bank Approval",
+    title: "Trusted RERA & Bank Approval",
     desc:
-      "Pre-approved by leading banks for smoother, faster home loans.",
+      "Fusion Rivulet is pre-approved by leading financial institutions, ensuring a smoother and faster home loan process.",
   },
 ];
 
 const HighlightSection = () => {
   return (
     <section className="relative overflow-hidden py-20 bg-white text-gray-900">
-      {/* Ambient glows */}
+      {/* Ambient background accents */}
       <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-200/20 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-300/20 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        {/* Section Heading */}
+        {/* Section Header */}
         <div className="mb-10 text-center">
           <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-yellow-500">
-            Highlights
+            Why Choose Us
           </h3>
           <h2 className="mt-3 text-4xl font-extrabold md:text-5xl">
-            Designed for <span className="text-yellow-500">Better Living</span>
+            <span className="text-gray-800">Fusion The Brook and Rivulet</span>{" "}
+            is <span className="text-yellow-500">Designed for Better Living</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-gray-700">
-            Thoughtfully curated features that blend comfort, connectivity, and confidence.
+            Experience a thoughtful blend of advanced construction, superior
+            green spaces, and unmatched connectivity.
           </p>
         </div>
 
@@ -61,7 +66,7 @@ const HighlightSection = () => {
               </div>
               <p className="font-medium text-gray-900">{title}</p>
 
-              {/* subtle gradient underline on hover */}
+              {/* Hover underline accent */}
               <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-yellow-400 to-amber-500 transition-all duration-300 group-hover:w-full" />
             </div>
           ))}
@@ -80,7 +85,7 @@ const HighlightSection = () => {
               <h4 className="text-lg font-semibold text-gray-900">{title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-gray-700">{desc}</p>
 
-              {/* corner accent */}
+              {/* Subtle corner glow */}
               <div className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 rounded-full bg-amber-200/30 blur-xl" />
             </div>
           ))}

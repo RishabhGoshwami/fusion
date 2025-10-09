@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// ✅ PDF path (place inside `public/assets/Fusion Brochure.pdf`)
+// PDF path (should be placed inside `public/assets/Fusion Brochure.pdf`)
 const pdfBrochure = "/assets/Fusion Brochure.pdf";
 
 export default function AutoPopupForm({ isOpen, onClose }) {
@@ -8,7 +8,7 @@ export default function AutoPopupForm({ isOpen, onClose }) {
   const [status, setStatus] = useState("");
   const [showDownload, setShowDownload] = useState(false);
 
-  // ✅ Auto open popup after delay (optional)
+  // Auto open/close popup (optional)
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isOpen) onClose(false);
@@ -18,18 +18,18 @@ export default function AutoPopupForm({ isOpen, onClose }) {
 
   if (!isOpen) return null;
 
-  // ✅ Handle input change
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // ✅ Handle form submit
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Submitting...");
 
-    // Basic validation
+    // Validate phone number
     const phonePattern = /^[6-9]\d{9}$/;
     if (!phonePattern.test(formData.phone)) {
       setStatus("❌ Enter a valid 10-digit mobile number starting with 6–9.");
@@ -37,7 +37,7 @@ export default function AutoPopupForm({ isOpen, onClose }) {
     }
 
     try {
-      // 1️⃣ Send data to Web3Forms
+      // Send data to Web3Forms
       const web3Response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -49,10 +49,9 @@ export default function AutoPopupForm({ isOpen, onClose }) {
           project: "Fusion",
         }),
       });
-
       const web3Result = await web3Response.json();
 
-      // 2️⃣ Send data to CRM API
+      // Send data to CRM API
       const crmUrl = `https://app.propertyexpertrealtors.com/api/getRecords.php?authentication_key=VndsbUlpKzhKdWpEbEZNSUNva2t1UT09&leads_full_name=${encodeURIComponent(
         formData.name
       )}&leads_phone_number=${encodeURIComponent(
@@ -66,7 +65,6 @@ export default function AutoPopupForm({ isOpen, onClose }) {
       const crmResponse = await fetch(crmUrl);
       const crmText = await crmResponse.text();
 
-      // 3️⃣ Handle both responses
       if (web3Result.success && crmResponse.ok) {
         setStatus("✅ Submitted successfully! Click below to download brochure.");
         setFormData({ name: "", email: "", phone: "" });
@@ -81,7 +79,7 @@ export default function AutoPopupForm({ isOpen, onClose }) {
     }
   };
 
-  // ✅ File download handler
+  // Handle brochure download
   const handleDownload = () => {
     try {
       const link = document.createElement("a");
@@ -98,7 +96,13 @@ export default function AutoPopupForm({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div
+      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="popup-title"
+      aria-describedby="popup-desc"
+    >
       <div className="relative bg-white rounded-2xl shadow-2xl p-8 w-full max-w-lg transform transition-all duration-300 scale-95 animate-zoomIn">
         {/* Close Button */}
         <button
@@ -107,49 +111,68 @@ export default function AutoPopupForm({ isOpen, onClose }) {
             setStatus("");
             onClose();
           }}
-          aria-label="Close"
+          aria-label="Close form popup"
           className="absolute top-4 right-4 text-gray-400 hover:text-gray-800 transition-colors duration-200 text-3xl leading-none"
         >
           &times;
         </button>
 
         {/* Title */}
-        <h2 className="text-3xl font-extrabold text-center text-gray-800 mb-2 font-poppins">
+        <h2
+          id="popup-title"
+          className="text-3xl font-extrabold text-center text-gray-800 mb-2 font-poppins"
+        >
           Fusion Homes
         </h2>
-        <p className="text-xl text-center font-semibold text-gray-600 mb-4 font-inter">
+        <p
+          id="popup-desc"
+          className="text-xl text-center font-semibold text-gray-600 mb-4 font-inter"
+        >
           Fill in your details and download the brochure instantly! ✨
         </p>
 
         <p className="text-sm text-gray-500 text-center mb-6">
-          I authorize representatives to contact me via Call, SMS, Email or
-          WhatsApp regarding project updates and offers.
+          I authorize representatives to contact me via Call, SMS, Email, or WhatsApp regarding project updates and offers.
         </p>
 
-        {/* Form Section */}
+        {/* Form */}
         {!showDownload ? (
           <form className="space-y-4" onSubmit={handleSubmit}>
+            <label className="sr-only" htmlFor="name">
+              Your Name
+            </label>
             <input
               type="text"
               name="name"
+              id="name"
               placeholder="Your Name"
               className="w-full border-b-2 border-gray-300 focus:border-yellow-500 outline-none p-2 transition-colors duration-200 font-medium"
               value={formData.name}
               onChange={handleChange}
               required
             />
+
+            <label className="sr-only" htmlFor="email">
+              Your Email
+            </label>
             <input
               type="email"
               name="email"
+              id="email"
               placeholder="Your Email"
               className="w-full border-b-2 border-gray-300 focus:border-yellow-500 outline-none p-2 transition-colors duration-200 font-medium"
               value={formData.email}
               onChange={handleChange}
               required
             />
+
+            <label className="sr-only" htmlFor="phone">
+              Your Mobile Number
+            </label>
             <input
               type="tel"
               name="phone"
+              id="phone"
               placeholder="Your Mobile Number"
               className="w-full border-b-2 border-gray-300 focus:border-yellow-500 outline-none p-2 transition-colors duration-200 font-medium"
               value={formData.phone}
@@ -165,7 +188,6 @@ export default function AutoPopupForm({ isOpen, onClose }) {
             </button>
           </form>
         ) : (
-          // ✅ Download Section
           <div className="text-center space-y-4">
             <p className="text-green-700 font-bold text-lg">
               🎉 Thank you! Your form has been submitted successfully.
@@ -174,7 +196,7 @@ export default function AutoPopupForm({ isOpen, onClose }) {
               onClick={handleDownload}
               className="w-full bg-yellow-500 text-white font-bold py-3 rounded-lg shadow-md hover:bg-yellow-600 transition-colors duration-200 flex items-center justify-center space-x-2"
             >
-              <span>📄 Download Fusion Brochure</span>
+              📄 Download Fusion Brochure
             </button>
             <button
               onClick={() => {

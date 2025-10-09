@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import FloatingButtons from "./components/FloatingButtons";
 import GallerySection from "./components/GallerySection";
 import ThankYou from "./components/ThankYou";
-import Disclaimer from "./components/Disclaimer";
 import DownloadSection from "./components/DownloadSection";
 import LocationSection from "./components/LocationSection";
 import FloorPlanSection from "./components/FloorPlanSection";
@@ -70,7 +69,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/disclaimer" element={<Disclaimer />} />
       </Routes>
     </>
   );
