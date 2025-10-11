@@ -1,0 +1,23 @@
+{
+  "root": "build",
+  "https_only": true,
+  "clean_urls": true,
+  "redirects": [
+    {
+      "source": "http://fusiongroup.org.in/*",
+      "destination": "https://www.fusiongroup.org.in/:splat",
+      "status": 301
+    },
+    {
+      "source": "https://fusiongroup.org.in/*",
+      "destination": "https://www.fusiongroup.org.in/:splat",
+      "status": 301
+    }
+  ],
+  "routes": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ]
+}

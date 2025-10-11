@@ -35,7 +35,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-white text-gray-900">
+    <footer id="contactus" className="relative bg-white text-gray-900">
       <div className="py-14 max-w-7xl mx-auto px-6 grid md:grid-cols-4 sm:grid-cols-2 gap-10 relative z-10">
         {/* Left: Disclaimer + Marketing Content */}
         <div className="md:col-span-2 flex flex-col gap-6">

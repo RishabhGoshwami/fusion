@@ -15,7 +15,7 @@ const LocationSection = () => {
   ];
 
   return (
-    <section className="relative bg-white text-gray-900 py-16 md:py-20">
+    <section id="location" className="relative bg-white text-gray-900 py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
         {/* Section Header */}
         <div className="text-center mb-12">

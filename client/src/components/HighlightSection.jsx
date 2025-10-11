@@ -1,15 +1,15 @@
-// ✅ src/components/HighlightSection.jsx (Final Polished & SEO-Optimized)
+// src/components/HighlightSection.jsx
 import React from "react";
 import { Hammer, Gem, Trees, Sparkles, MapPin, ShieldCheck } from "lucide-react";
 
-// Top Feature Highlights
+// ✅ Top feature chips
 const topFeatures = [
   { icon: Hammer, title: "Mivan Formwork Construction" },
   { icon: Gem, title: "Premium 3 & 4 BHK Apartments" },
   { icon: Trees, title: "12.5 Acres of Green and Open Spaces" },
 ];
 
-// Project Highlights with Keyword Optimization
+// ✅ Detailed highlight cards
 const highlightCards = [
   {
     icon: Sparkles,
@@ -33,8 +33,11 @@ const highlightCards = [
 
 const HighlightSection = () => {
   return (
-    <section className="relative overflow-hidden py-20 bg-white text-gray-900">
-      {/* Ambient background accents */}
+    <section
+      id="highlights"
+      className="relative overflow-hidden py-20 bg-white text-gray-900"
+    >
+      {/* Background Accents */}
       <div className="pointer-events-none absolute -top-10 -left-10 h-72 w-72 rounded-full bg-yellow-200/20 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-16 -right-8 h-80 w-80 rounded-full bg-amber-300/20 blur-3xl" />
 
@@ -65,14 +68,12 @@ const HighlightSection = () => {
                 <Icon className="h-6 w-6 text-yellow-500" />
               </div>
               <p className="font-medium text-gray-900">{title}</p>
-
-              {/* Hover underline accent */}
               <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-yellow-400 to-amber-500 transition-all duration-300 group-hover:w-full" />
             </div>
           ))}
         </div>
 
-        {/* Detailed Cards */}
+        {/* Detailed Highlight Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {highlightCards.map(({ icon: Icon, title, desc }, i) => (
             <div
@@ -85,7 +86,7 @@ const HighlightSection = () => {
               <h4 className="text-lg font-semibold text-gray-900">{title}</h4>
               <p className="mt-2 text-sm leading-relaxed text-gray-700">{desc}</p>
 
-              {/* Subtle corner glow */}
+              {/* Subtle Glow */}
               <div className="pointer-events-none absolute -right-2 -top-2 h-16 w-16 rounded-full bg-amber-200/30 blur-xl" />
             </div>
           ))}

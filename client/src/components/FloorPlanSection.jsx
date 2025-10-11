@@ -17,7 +17,7 @@ const FloorPlanSection = () => {
   const currentPlan = plans.find((plan) => plan.id === activePlan);
 
   return (
-    <section className="py-20 bg-gray-50" id="floor-plans">
+    <section className="py-20 bg-gray-50" id="floorplans">
       <div className="max-w-6xl mx-auto px-6 text-center">
         {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
