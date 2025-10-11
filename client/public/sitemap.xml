@@ -1,38 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Fusion Group SEO-friendly Sitemap (Hash Routing) -->
 
+  <!-- Homepage -->
   <url>
     <loc>https://www.fusiongroup.org.in/</loc>
-    <lastmod>2025-09-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
+  <!-- Who We Are -->
   <url>
-    <loc>https://www.fusiongroup.org.in/#about</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://www.fusiongroup.org.in/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Download Brochure & Price List -->
   <url>
-    <loc>https://www.fusiongroup.org.in/#amenities</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://www.fusiongroup.org.in/downloads</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
+  <!-- Amenities -->
   <url>
-    <loc>https://www.fusiongroup.org.in/#pricing-plan</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://www.fusiongroup.org.in/amenities</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Highlights -->
+  <url>
+    <loc>https://www.fusiongroup.org.in/highlights</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Layout & Floors -->
+  <url>
+    <loc>https://www.fusiongroup.org.in/floor-plans</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://www.fusiongroup.org.in/gallery</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <!-- Location -->
   <url>
-    <loc>https://www.fusiongroup.org.in/#floor-plan</loc>
-    <lastmod>2025-09-26</lastmod>
+    <loc>https://www.fusiongroup.org.in/location</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://www.fusiongroup.org.in/contactus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
