@@ -4,5 +4,5 @@ Disallow: /admin/
 Disallow: /login/
 Allow: /
 
-# Sitemap location
+# Correct Sitemap location
 Sitemap: https://www.fusiongroup.org.in/sitemap.xml
